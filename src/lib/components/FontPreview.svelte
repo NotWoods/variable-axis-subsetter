@@ -1,13 +1,15 @@
 <script lang="ts">
+	export let showOutput: boolean = false;
 	export let displayValues: ReadonlyMap<string, number>;
 
+	$: fontFamily = showOutput ? 'MySubsettedFont' : 'MyVariableFont';
 	$: variationSettings = Array.from(displayValues)
 		.map(([axis, value]) => `"${axis}" ${value}`)
 		.join(', ');
 </script>
 
 <section
-	style="font-family: MyVariableFont; font-variation-settings: {variationSettings}"
+	style="font-family: {fontFamily}; font-variation-settings: {variationSettings}"
 	class="sample"
 	contenteditable="true"
 	autocomplete="off"
@@ -23,5 +25,8 @@
 		font-family: MyVariableFont;
 		font-size: 5.5em;
 		word-break: break-all;
+		padding-inline: 8px;
+		overflow-y: auto;
+		max-height: 100vh;
 	}
 </style>

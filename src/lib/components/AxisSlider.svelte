@@ -2,7 +2,9 @@
 	import type { AxisProxy } from '../font-worker';
 
 	const KNOWN_SHORTHANDS: Partial<Record<string, string>> = {
-		wght: 'Weight'
+		wght: 'Weight',
+		wdth: 'Width',
+		opsz: 'Optical Size'
 	};
 
 	export let axis: AxisProxy;
@@ -28,10 +30,42 @@
 		on:input
 		on:change
 	/>
+
+	<datalist id="{axis.axisTag}-tickmarks">
+		<option value={axis.minValue} title="Minimum" label={axis.minValue.toString()} />
+		<option value={axis.defaultValue} title="Default" label={axis.defaultValue.toString()} />
+		<option value={axis.maxValue} title="Maximum" label={axis.maxValue.toString()} />
+	</datalist>
 </div>
 
-<datalist id="{axis.axisTag}-tickmarks">
-	<option value={axis.minValue} label="min: {axis.minValue}" />
-	<option value={axis.defaultValue} label="default: {axis.defaultValue}" />
-	<option value={axis.maxValue} label="max: {axis.maxValue}" />
-</datalist>
+<style>
+	.axis-slider {
+		display: grid;
+		grid-template:
+			'tag    output' auto
+			'slider slider' auto
+			'ticks  ticks ' auto
+			/ 1fr auto;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		border-bottom: 1px solid gray;
+	}
+	.axis-slider:last-child {
+		border-bottom-width: 0;
+	}
+	label {
+		grid-area: tag;
+	}
+	abbr {
+		text-decoration: none;
+	}
+	output {
+		grid-area: output;
+	}
+	input {
+		grid-area: slider;
+	}
+	datalist {
+		grid-area: ticks;
+	}
+</style>

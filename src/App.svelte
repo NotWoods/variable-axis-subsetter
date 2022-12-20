@@ -17,14 +17,29 @@
 	}
 </script>
 
-<FontPreview {displayValues} />
+<main>
+	<FontPreview {displayValues} />
 
-<aside>
-	{#await axisList}
-		Loading...
-	{:then axes}
-		{#each axes as axis (axis.axisTag)}
-			<AxisSlider {axis} value={displayValues.get(axis.axisTag)} on:input={onAxisSliderChange} />
-		{/each}
-	{/await}
-</aside>
+	<aside>
+		{#await axisList}
+			Loading...
+		{:then axes}
+			{#each axes as axis (axis.axisTag)}
+				<AxisSlider {axis} value={displayValues.get(axis.axisTag)} on:input={onAxisSliderChange} />
+			{/each}
+		{/await}
+	</aside>
+</main>
+
+<style>
+	main {
+		--sidebar-width: 10rem;
+		display: grid;
+		grid-template-columns: 1fr var(--sidebar-width);
+	}
+	aside {
+		padding: 16px;
+		overflow-y: auto;
+		background: #eeeeee;
+	}
+</style>

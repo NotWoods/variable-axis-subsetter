@@ -1,5 +1,6 @@
 import { FontWorker } from './lib/font-worker';
 import { setFontFace } from './set-font';
+import './app.css';
 
 const lazyApp = import('./App.svelte');
 
