@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { main } from '../lib/font-worker/subsetter';
+	import { getFontAxes } from '../lib/font-worker/subsetter';
 	import { onMount } from 'svelte';
 
 	onMount(async () => {
-		main();
+		const response = await fetch('/demo/RobotoFlex.ttf');
+		console.log(await getFontAxes(await response.blob()));
 	});
 </script>
 
