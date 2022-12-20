@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Variable Axis Subsetter</title>
+		<script defer src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
+		<script type="module" src="/src/landing-page.ts"></script>
+	</head>
+	<body>
+		<file-drop accept="font/ttf">
+			<div id="loading"></div>
+			<div id="app">
+				<input type="file" accept="font/ttf" />
+
+				<section>
+					Or try one of these:
+					<ul id="demos">
+						<li><button type="button" value="RobotoFlex.ttf">Roboto Flex</button></li>
+					</ul>
+				</section>
+			</div>
+		</file-drop>
+		<script type="module">
+			if (window.customElements) {
+				import('file-drop-element');
+			}
+		</script>
+	</body>
+</html>

@@ -4,19 +4,19 @@ import pyodideReadyPromise from './pyodide';
 import axisSubsetterCode from './axis_subsetter.py?raw';
 import getAxesCode from './get_axes.py?raw';
 
-async function zipFontFile(fontFile: Blob) {
+async function zipFontFile(fontFile: ArrayBuffer) {
 	var zip = new JSZip();
 	zip.file('MyVariableFont.ttf', fontFile);
 	return zip.generateAsync({ type: 'arraybuffer' });
 }
 
 // TODO put a lock on this somehow
-let lastUploaded: Blob | undefined;
+let lastUploaded: ArrayBuffer | undefined;
 /**
  * Helper to load a font into Python filesystem.
  * Will bail if the file was already uploaded.
  */
-async function uploadFontFile(fontFile: Blob) {
+async function uploadFontFile(fontFile: ArrayBuffer) {
 	if (fontFile === lastUploaded) return;
 
 	const [pyodide, archive] = await Promise.all([pyodideReadyPromise, zipFontFile(fontFile)]);
@@ -41,7 +41,7 @@ export type AxisLimit =
 /**
  * Returns all the axes in a variable font.
  */
-export async function getFontAxes(fontFile: Blob): Promise<AxisProxy[]> {
+export async function getFontAxes(fontFile: ArrayBuffer): Promise<AxisProxy[]> {
 	await uploadFontFile(fontFile);
 	const pyodide = await pyodideReadyPromise;
 
@@ -55,13 +55,13 @@ export async function getFontAxes(fontFile: Blob): Promise<AxisProxy[]> {
  * @param axes Map of axis names to axis limit instructions.
  */
 export async function subsetFontAxes(
-	fontFile: Blob,
+	fontFile: ArrayBuffer,
 	axes: ReadonlyMap<string, AxisLimit>
 ): Promise<Uint8Array> {
 	await uploadFontFile(fontFile);
 	const pyodide = await pyodideReadyPromise;
 
-	const axisSubset = await pyodide.runPythonAsync(getAxesCode);
+	const axisSubset = await pyodide.runPythonAsync(axisSubsetterCode);
 	axisSubset(axes);
 
 	return pyodide.FS.readFile('MySubsettedFont.ttf', { encoding: 'binary' });
