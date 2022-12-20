@@ -1,6 +1,7 @@
 <script lang="ts">
 	import AxisSlider from './lib/components/AxisSlider.svelte';
 	import FontPreview from './lib/components/FontPreview.svelte';
+	import SizeResults from './lib/components/size/SizeResults.svelte';
 	import type { FontWorker } from './lib/font-worker';
 
 	export let fontWorker: FontWorker;
@@ -29,11 +30,15 @@
 			{/each}
 		{/await}
 	</aside>
+
+	<SizeResults
+		originalLength={fontWorker.fontFile.byteLength}
+		subsetLength={fontWorker.fontFile.byteLength}
+	/>
 </main>
 
 <style>
 	main {
-		--sidebar-width: 10rem;
 		display: grid;
 		grid-template-columns: 1fr var(--sidebar-width);
 	}
