@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" height="200" width="600" fill="currentColor">
+    <style>
+        @font-face {
+            font-family: 'Roboto Flex';
+            src: local('Roboto Flex'), url('http://localhost:5173/demo/RobotoFlex.ttf') format(truetype) tech(variations);
+        }
+        svg {
+            --cursor-offset: -10px;
+        }
+        .animated {
+            animation: 1s cubic-bezier(0.6, -0.28, 0.74, 0.05) 1s forwards cursor-solid;
+        }
+        text {
+            text-anchor: middle;
+            font-family: 'Roboto Flex', sans-serif;
+            font-size: 80px;
+            font-variation-settings: 'wght' 600, 'wdth' var(--font-width, 100), 'opsz' 85,
+                'GRAD' -123, 'XTRA' 600, 'YOPQ' 135;
+        }
+        .var-font {
+            --font-width: 50;
+        }
+        .subsetter {
+            --font-width: 100;
+        }
+        .outline {
+            stroke: currentColor;
+            stroke-width: 1px;
+            fill: none;
+        }
+
+        .subsetter.solid {
+            clip-path: inset(0 var(--cursor-offset));
+            animation-name: cursor-solid;
+        }
+        .cursor-start {
+            transform: translateX(var(--cursor-offset));
+            animation-name: cursor-start;
+        }
+        .cursor-end {
+            transform: translateX(calc(var(--cursor-offset) * -1));
+            animation-name: cursor-end;
+        }
+
+        @keyframes cursor-solid {
+            from {
+                --cursor-offset: -10px;
+                clip-path: inset(0 -10px);
+            }
+            to {
+                --cursor-offset: 38px;
+                clip-path: inset(0 38px);
+            }
+        }
+        @keyframes cursor-start {
+            from {
+                --cursor-offset: -10px;
+                transform: translateX(-10px);
+            }
+            to {
+                --cursor-offset: 38px;
+                transform: translateX(38px);
+            }
+        }
+        @keyframes cursor-end {
+            from {
+                --cursor-offset: -10px;
+                transform: translateX(10px);
+            }
+            to {
+                --cursor-offset: 38px;
+                transform: translateX(-38px);
+            }
+        }
+    </style>
+
+    <text class="var-font" x="300" y="80">Variable Font</text>
+    <text class="subsetter solid animated" x="300" y="160">Subsetter</text>
+    <text class="subsetter outline" x="300" y="160">Subsetter</text>
+
+    <rect class="cursor cursor-start animated" x="90" y="90" height="80" width="3" />
+    <rect class="cursor cursor-end animated" x="508" y="90" height="80" width="3" />
+</svg>
