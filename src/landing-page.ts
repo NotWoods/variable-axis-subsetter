@@ -20,15 +20,15 @@ async function openEditor(file: ArrayBuffer) {
 	});
 }
 
-document.querySelector('input[type="file"')?.addEventListener('change', async (event) => {
+document.querySelector('input[type="file"')!.addEventListener('change', async (event) => {
 	const input = event.currentTarget as HTMLInputElement;
 	if (!input.files || input.files.length === 0) return;
 	openEditor(await input.files[0].arrayBuffer());
 });
-document.querySelector('demos')?.addEventListener('click', async (event) => {
+document.querySelector('#demos')!.addEventListener('click', async (event) => {
 	const button = (event.target as Element).closest('button');
 	if (button) {
-		const response = await fetch(`/demos/${button.value}`);
+		const response = await fetch(`/demo/${button.value}`);
 		openEditor(await response.arrayBuffer());
 	}
 });
