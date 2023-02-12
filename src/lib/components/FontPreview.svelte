@@ -1,4 +1,6 @@
 <script lang="ts">
+	import PaperGrain from './PaperGrain.svelte';
+
 	export let showOutput: boolean = false;
 	export let displayValues: ReadonlyMap<string, number>;
 
@@ -8,17 +10,19 @@
 		.join(', ');
 </script>
 
-<section
-	style="font-family: {fontFamily}; font-variation-settings: {variationSettings}"
-	class="sample"
-	contenteditable="true"
-	autocomplete="off"
-	autocorrect="off"
-	autocapitalize="off"
-	spellcheck="false"
->
-	ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789
-</section>
+<PaperGrain>
+	<section
+		style="font-family: {fontFamily}; font-variation-settings: {variationSettings}"
+		class="sample"
+		contenteditable="true"
+		autocomplete="off"
+		autocorrect="off"
+		autocapitalize="off"
+		spellcheck="false"
+	>
+		ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789
+	</section>
+</PaperGrain>
 
 <style>
 	.sample {
@@ -26,7 +30,5 @@
 		font-size: 5.5em;
 		word-break: break-all;
 		padding-inline: 8px;
-		overflow-y: auto;
-		max-height: 100vh;
 	}
 </style>

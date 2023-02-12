@@ -1,6 +1,7 @@
 <script lang="ts">
 	import AxisSlider from './lib/components/AxisSlider.svelte';
 	import FontPreview from './lib/components/FontPreview.svelte';
+	import PaperGrain from './lib/components/PaperGrain.svelte';
 	import SizeResults from './lib/components/size/SizeResults.svelte';
 	import type { FontWorker } from './lib/font-worker';
 
@@ -22,13 +23,21 @@
 	<FontPreview {displayValues} />
 
 	<aside>
-		{#await axisList}
-			Loading...
-		{:then axes}
-			{#each axes as axis (axis.axisTag)}
-				<AxisSlider {axis} value={displayValues.get(axis.axisTag)} on:input={onAxisSliderChange} />
-			{/each}
-		{/await}
+		<PaperGrain>
+			<div class="sliders">
+				{#await axisList}
+					Loading...
+				{:then axes}
+					{#each axes as axis (axis.axisTag)}
+						<AxisSlider
+							{axis}
+							value={displayValues.get(axis.axisTag)}
+							on:input={onAxisSliderChange}
+						/>
+					{/each}
+				{/await}
+			</div>
+		</PaperGrain>
 	</aside>
 
 	<SizeResults
@@ -41,11 +50,13 @@
 	main {
 		display: grid;
 		height: 100vh;
+		height: 100dvh;
 		grid-template-columns: 1fr var(--sidebar-width);
 	}
 	aside {
-		padding: 16px;
-		overflow-y: auto;
 		background: var(--surface-variant-color);
+	}
+	.sliders {
+		padding: 16px;
 	}
 </style>
