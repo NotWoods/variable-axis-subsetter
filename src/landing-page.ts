@@ -1,6 +1,7 @@
 import { FontWorker } from './lib/font-worker';
 import { setFontFace } from './set-font';
 import './app.css';
+import type { FileDropEvent } from 'file-drop-element';
 
 const lazyApp = import('./App.svelte');
 
@@ -26,6 +27,12 @@ async function openEditor(file: ArrayBuffer) {
 		}
 	});
 }
+async function openEditorFromFileList(files: FileList | readonly File[] | null) {
+	if (files && files.length > 0) {
+		openEditor(await files[0].arrayBuffer());
+	}
+}
+
 window.addEventListener('popstate', (event) => {
 	switch (document.location.pathname) {
 		case '/':
@@ -47,10 +54,13 @@ window.addEventListener('popstate', (event) => {
 	}
 });
 
-document.querySelector('input[type="file"]')!.addEventListener('change', async (event) => {
-	const input = event.currentTarget as HTMLInputElement;
-	if (!input.files || input.files.length === 0) return;
-	openEditor(await input.files[0].arrayBuffer());
+document.querySelector('input[type="file"]')!.addEventListener('change', (event) => {
+	const { files } = event.currentTarget as HTMLInputElement;
+	openEditorFromFileList(files);
+});
+document.querySelector('file-drop')!.addEventListener('filedrop', (event) => {
+	const { files } = event as FileDropEvent;
+	openEditorFromFileList(files);
 });
 document.querySelector('#demos')!.addEventListener('click', async (event) => {
 	const button = (event.target as Element).closest('button');

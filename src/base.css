@@ -117,6 +117,38 @@ text {
 	opacity: var(--focus-state-layer-opacity);
 }
 
+/* file-drop */
+.drop {
+	overflow: hidden;
+	touch-action: none;
+	height: 100%;
+	width: 100%;
+}
+.drop::after {
+	content: '';
+	position: absolute;
+	display: block;
+	left: 10px;
+	top: 10px;
+	right: 10px;
+	bottom: 10px;
+	border: 2px dashed rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	opacity: 0;
+	transform: scale(0.95);
+	transition: all 200ms ease-in;
+	transition-property: transform, opacity;
+	pointer-events: none;
+	z-index: 10;
+}
+.drop.drop-valid::after {
+	opacity: 1;
+	transform: scale(1);
+	transition-timing-function: ease-out;
+}
+/* end file-drop */
+
 .upload-button__container {
 	display: inline-block;
 	position: relative;
