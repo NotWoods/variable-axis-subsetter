@@ -204,7 +204,8 @@ text {
 	gap: 8px;
 	margin: 0;
 	padding: 0;
-	grid-auto-columns: 12rem;
+	grid-auto-flow: row dense;
+	grid-template-columns: repeat(auto-fit, minmax(10rem, 12rem));
 	justify-content: center;
 }
 .demos li {
