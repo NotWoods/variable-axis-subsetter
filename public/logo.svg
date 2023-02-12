@@ -1,11 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" height="200" width="600" fill="currentColor">
     <style>
-        @font-face {
-            font-family: 'Roboto Flex';
-            src: local('Roboto Flex'), url('http://localhost:5173/demo/RobotoFlex.ttf') format(truetype) tech(variations);
-        }
         svg {
             --cursor-offset: -10px;
+            color: #202020;
         }
         .animated {
             animation: 1s cubic-bezier(0.6, -0.28, 0.74, 0.05) 1s forwards cursor-solid;

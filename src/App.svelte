@@ -40,11 +40,12 @@
 <style>
 	main {
 		display: grid;
+		height: 100vh;
 		grid-template-columns: 1fr var(--sidebar-width);
 	}
 	aside {
 		padding: 16px;
 		overflow-y: auto;
-		background: #eeeeee;
+		background: var(--surface-variant-color);
 	}
 </style>
