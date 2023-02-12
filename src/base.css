@@ -8,6 +8,7 @@ body {
 	--surface-variant-color: #d0bda8;
 	--on-surface-color: #332e30;
 	--primary-color: hsl(29, 52%, 39%);
+	--on-primary-color: #f2ebdd;
 
 	--hover-state-layer-opacity: 0.08;
 	--focus-state-layer-opacity: 0.12;
@@ -95,24 +96,24 @@ text {
 }
 /* end logo */
 
-.filled-button {
+.state-layer {
 	position: relative;
 	cursor: pointer;
 }
-.filled-button::before {
+.state-layer::before {
 	content: '';
 	position: absolute;
 	inset: 0;
 	opacity: 0;
 	transition: opacity 0.2s ease-in-out;
 }
-.filled-button:hover::before {
+.state-layer:hover::before {
 	opacity: var(--hover-state-layer-opacity);
 }
-.filled-button:active::before {
+.state-layer:active::before {
 	opacity: var(--pressed-state-layer-opacity);
 }
-.filled-button:focus::before {
+.state-layer:focus::before {
 	opacity: var(--focus-state-layer-opacity);
 }
 
@@ -141,12 +142,11 @@ text {
 	align-items: center;
 	column-gap: 0.5em;
 	font-weight: 600;
-	border-color: var(--on-surface-color);
-	color: var(--primary-color);
-	background-color: var(--surface-color);
+	background-color: var(--primary-color);
+	color: var(--on-primary-color);
 }
 .upload-button::before {
-	background-color: var(--primary-color);
+	background-color: var(--on-primary-color);
 }
 .upload-button__input:focus + .upload-button::before {
 	opacity: var(--focus-state-layer-opacity);
