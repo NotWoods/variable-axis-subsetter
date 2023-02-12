@@ -13,49 +13,51 @@
 		<file-drop accept="font/ttf">
 			<div id="loading"></div>
 			<div id="app">
-				<section class="landing">
-					<svg
-						role="heading"
-						aria-level="1"
-						class="logo"
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 600 200"
-						height="200"
-						width="600"
-						fill="currentColor"
-					>
-						<text class="var-font" x="300" y="80">Variable Font</text>
-						<text class="subsetter solid animated" x="300" y="160">Subsetter</text>
-						<text class="subsetter outline" x="300" y="160">Subsetter</text>
+				<div class="landing">
+					<header>
+						<svg
+							role="heading"
+							aria-level="1"
+							class="logo"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 600 200"
+							height="200"
+							width="600"
+							fill="currentColor"
+						>
+							<text class="var-font" x="300" y="80">Variable Font</text>
+							<text class="subsetter solid animated" x="300" y="160">Subsetter</text>
+							<text class="subsetter outline" x="300" y="160">Subsetter</text>
 
-						<rect class="cursor animated" x="90" y="90" height="80" width="3" />
-						<g class="flip">
 							<rect class="cursor animated" x="90" y="90" height="80" width="3" />
-						</g>
-					</svg>
+							<g class="flip">
+								<rect class="cursor animated" x="90" y="90" height="80" width="3" />
+							</g>
+						</svg>
 
-					<label for="upload" class="upload-button__container">
-						<input class="upload-button__input" id="upload" type="file" accept="font/ttf" />
-						<div class="upload-button filled-button">
-							<svg
-								class="upload-button__text"
-								viewBox="0 0 24 24"
-								height="24px"
-								width="24px"
-								fill="currentCOlor"
-								aria-hidden="true"
-							>
-								<path d="M13,4H6v16h12V9h-5V4z M16,15h-3v4h-2v-4H8l4.01-4L16,15z" opacity=".3" />
-								<path
-									d="M14,2H6C4.9,2,4.01,2.9,4.01,4L4,20c0,1.1,0.89,2,1.99,2H18c1.1,0,2-0.9,2-2V8L14,2z M18,20H6V4h7v5h5V20z"
-								/>
-								<polygon points="8,15 11,15 11,19 13,19 13,15 16,15 12.01,11" />
-							</svg>
-							<span class="upload-button__text">Upload a font</span>
-						</div>
-					</label>
+						<label for="upload" class="upload-button__container">
+							<input class="upload-button__input" id="upload" type="file" accept="font/ttf" />
+							<div class="upload-button filled-button">
+								<svg
+									class="upload-button__text"
+									viewBox="0 0 24 24"
+									height="24px"
+									width="24px"
+									fill="currentCOlor"
+									aria-hidden="true"
+								>
+									<path d="M13,4H6v16h12V9h-5V4z M16,15h-3v4h-2v-4H8l4.01-4L16,15z" opacity=".3" />
+									<path
+										d="M14,2H6C4.9,2,4.01,2.9,4.01,4L4,20c0,1.1,0.89,2,1.99,2H18c1.1,0,2-0.9,2-2V8L14,2z M18,20H6V4h7v5h5V20z"
+									/>
+									<polygon points="8,15 11,15 11,19 13,19 13,15 16,15 12.01,11" />
+								</svg>
+								<span class="upload-button__text">Upload a font</span>
+							</div>
+						</label>
+					</header>
 
-					<div class="try-demos">
+					<section class="try-demos">
 						<h2 class="demos__header">Or try one of these:</h2>
 						<ul class="demos" id="demos">
 							<li>
@@ -69,8 +71,25 @@
 								</button>
 							</li>
 						</ul>
-					</div>
-				</section>
+					</section>
+
+					<section class="info">
+						<div class="info-content">
+							<h2>Small</h2>
+							<p>
+								Smaller fonts mean faster loading times. Reduce your font file size while
+								maintaining high quality.
+							</p>
+						</div>
+
+						<div class="info-content">
+							<h2>Simple</h2>
+							<p>
+								Open your font, inspect the variable axes, then save your adjustments instantly.
+							</p>
+						</div>
+					</section>
+				</div>
 				<div class="paper-overlay"></div>
 			</div>
 		</file-drop>

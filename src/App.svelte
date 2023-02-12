@@ -49,7 +49,6 @@
 <style>
 	main {
 		display: grid;
-		height: 100vh;
 		height: 100dvh;
 		grid-template-columns: 1fr var(--sidebar-width);
 	}

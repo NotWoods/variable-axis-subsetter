@@ -20,6 +20,7 @@ body {
 	margin: 0;
 	position: relative;
 	font-family: 'Roboto Flex', sans-serif;
+	font-variation-settings: 'XOPQ' 100, 'YOPQ' 50;
 }
 
 .paper-overlay {
@@ -33,11 +34,13 @@ body {
 
 .landing {
 	text-align: center;
+	min-height: 100dvh;
 }
 .logo {
 	display: block;
 	padding-block: 16px;
 	margin-inline: auto;
+	max-width: 100%;
 }
 
 /* logo */
@@ -169,7 +172,7 @@ text {
 	gap: 8px;
 	margin: 0;
 	padding: 0;
-	grid-auto-columns: 200px;
+	grid-auto-columns: 12rem;
 	justify-content: center;
 }
 .demos li {
@@ -189,4 +192,19 @@ text {
 .demos button::before {
 	border-radius: 12px;
 	background-color: var(--on-surface-color);
+}
+
+.info {
+	max-width: 1000px;
+	padding-block: 0.5rem;
+	padding-inline: 16px;
+	margin-inline: auto;
+	text-align: start;
+}
+.info-content {
+	margin-block: 3rem;
+}
+.info h2 {
+	margin: 0;
+	font-weight: 600;
 }

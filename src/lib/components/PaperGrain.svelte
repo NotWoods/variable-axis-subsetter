@@ -8,7 +8,6 @@
 <style>
 	.paper-scrollable {
 		overflow-y: auto;
-		height: 100vh;
 		height: 100dvh;
 	}
 	.paper-container {

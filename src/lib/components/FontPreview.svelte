@@ -12,7 +12,7 @@
 
 <PaperGrain>
 	<section
-		style="font-family: {fontFamily}; font-variation-settings: {variationSettings}"
+		style="font-family: {fontFamily}; font-variation-settings: {variationSettings || 'initial'}"
 		class="sample"
 		contenteditable="true"
 		autocomplete="off"
