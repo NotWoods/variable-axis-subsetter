@@ -1,11 +1,10 @@
 import JSZip from 'jszip';
-import type { PyProxy } from 'pyodide';
 import pyodideReadyPromise from './pyodide';
 import axisSubsetterCode from './axis_subsetter.py?raw';
 import getAxesCode from './get_axes.py?raw';
 
 async function zipFontFile(fontFile: ArrayBuffer) {
-	var zip = new JSZip();
+	const zip = new JSZip();
 	zip.file('MyVariableFont.ttf', fontFile);
 	return zip.generateAsync({ type: 'arraybuffer' });
 }
@@ -17,13 +16,14 @@ let lastUploaded: ArrayBuffer | undefined;
  * Will bail if the file was already uploaded.
  */
 async function uploadFontFile(fontFile: ArrayBuffer) {
+	console.log(fontFile);
 	if (fontFile === lastUploaded) return;
 
 	const [pyodide, archive] = await Promise.all([pyodideReadyPromise, zipFontFile(fontFile)]);
 	pyodide.unpackArchive(archive, 'zip');
 }
 
-export type AxisProxy = PyProxy & {
+export type AxisProxy = {
 	axisTag: string;
 	axisNameID: number;
 	flags: number;
@@ -46,7 +46,14 @@ export async function getFontAxes(fontFile: ArrayBuffer): Promise<AxisProxy[]> {
 	const pyodide = await pyodideReadyPromise;
 
 	const axesListProxy = await pyodide.runPythonAsync(getAxesCode);
-	return Array.from<AxisProxy>(axesListProxy);
+	return Array.from<AxisProxy>(axesListProxy).map((axis) => ({
+		axisTag: axis.axisTag,
+		axisNameID: axis.axisNameID,
+		flags: axis.flags,
+		minValue: axis.minValue,
+		defaultValue: axis.defaultValue,
+		maxValue: axis.maxValue
+	}));
 }
 
 /**

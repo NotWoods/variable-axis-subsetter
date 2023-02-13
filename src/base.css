@@ -221,6 +221,7 @@ text {
 	padding: 16px;
 	text-align: start;
 	font-size: 3rem;
+	font-variation-settings: initial;
 }
 .demos button::before {
 	border-radius: 12px;

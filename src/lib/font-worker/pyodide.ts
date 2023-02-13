@@ -1,6 +1,4 @@
-declare global {
-	const loadPyodide: typeof import('pyodide').loadPyodide;
-}
+import { loadPyodide } from 'pyodide';
 
 async function loadPyodideAndPackages() {
 	const pyodide = await loadPyodide();
